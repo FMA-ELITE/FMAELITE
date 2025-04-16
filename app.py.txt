@@ -1,0 +1,44 @@
+import os
+from flask import Flask, request, jsonify
+from africastalking.initialize import initialize
+from africastalking.payment import PaymentService
+
+app = Flask(__name__)
+
+# Initialize Africa's Talking
+try:
+    initialize(os.getenv('AT_USERNAME'), os.getenv('AT_API_KEY'))
+    payments = PaymentService()
+    print("✅ Africa's Talking initialized")
+except Exception as e:
+    print(f"❌ AT Init failed: {str(e)}")
+    payments = None
+
+@app.route('/pay', methods=['POST'])
+def handle_payment():
+    if not payments:
+        return jsonify({"status": "error", "message": "Payment service offline"}), 503
+        
+    try:
+        data = request.json
+        response = payments.mobile_checkout(
+            product_name=data['product_name'],
+            phone_number=data['phone'],
+            currency_code="UGX",
+            amount=str(data['amount']),
+            metadata={"plan": data['plan']}
+        )
+        return jsonify({
+            "status": "success",
+            "transaction_id": response['transactionId']
+        })
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+@app.route('/')
+def health_check():
+    return jsonify({"status": "active", "service": "FMA Payments"})
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)

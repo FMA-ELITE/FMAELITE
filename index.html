@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Mastery Academy | Signals & Mentorship | Uganda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #FFD700;
+            --dark: #1A1A2E;
+            --blue: #16213E;
+            --green: #2ECC71;
+            --purple: #9B59B6;
+            --red: #E74C3C;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            background-color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--blue), #0F3460);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            background-image: url('GBPUSD_2025-04-11_12-20-17.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            height: 60px;
+            width: auto;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Navigation Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--gold);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+        
+        .tab-btn.active {
+            background: var(--gold);
+            color: black;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Pricing Cards */
+        .pricing-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .pricing-card {
+            background: rgba(26, 26, 46, 0.9);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--green);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.2);
+        }
+        
+        .badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .badge.gold {
+            background: var(--gold);
+            color: black;
+        }
+        
+        .badge.green {
+            background: var(--green);
+        }
+        
+        .plan-name {
+            color: var(--gold);
+            font-size: 24px;
+            margin-top: 0;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: var(--green);
+        }
+        
+        .installment {
+            font-size: 16px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+        
+        .features {
+            margin: 25px 0;
+            padding-left: 20px;
+        }
+        
+        .features li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: var(--green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background: rgba(46, 204, 113, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        /* Payment Form */
+        .payment-form {
+            display: none;
+            background: rgba(22, 33, 62, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid var(--gold);
+        }
+        
+        .form-input {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid var(--gold);
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            padding: 15px 30px;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: var(--green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        
+        .btn.purple {
+            background: var(--purple);
+            color: white;
+        }
+        
+        .btn.purple:hover {
+            background: #8e44ad;
+        }
+        
+        /* Status Messages */
+        .status-message {
+            font-size: 14px;
+            margin-top: 15px;
+            min-height: 50px;
+            line-height: 1.5;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 60px 0;
+        }
+        
+        .testimonial-card {
+            background: rgba(22, 33, 62, 0.8);
+            border-left: 3px solid var(--gold);
+            padding: 25px;
+            width: 280px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-card strong {
+            color: var(--gold);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--blue);
+            padding: 30px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                position: static;
+                display: block;
+                margin: 0 auto 20px;
+            }
+            
+            .pricing-card {
+                width: 90%;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="fma logo.jpg" alt="Forex Mastery Academy Logo" class="logo">
+        <div class="container">
+            <h1>FOREX MASTERY ACADEMY</h1>
+            <p>Professional Trading Signals & Personalized Mentorship</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Main Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('signals')">Forex Signals</button>
+            <button class="tab-btn" onclick="openTab('mentorship')">Mentorship</button>
+            <button class="tab-btn" onclick="openTab('community')">Community</button>
+        </div>
+        
+        <!-- SIGNALS TAB -->
+        <div id="signals" class="tab-content active">
+            <h2 style="text-align: center; margin-bottom: 30px;">VIP FOREX SIGNALS PLANS</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Receive daily high-probability trading signals with precise entry/exit points, risk management guidance, and WhatsApp support.</p>
+            
+            <div class="pricing-container">
+                <!-- 1 MONTH PLAN -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">1 Month</h3>
+                    <div class="price">50,000 UGX</div>
+                    <ul class="features">
+                        <li>3-5 signals per day (Mon-Fri)</li>
+                        <li>Basic WhatsApp support</li>
+                        <li>Entry/Exit/Target levels</li>
+                        <li>Daily market updates</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('1month', 50000)">SUBSCRIBE NOW</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-1month" class="payment-form">
+                        <input type="text" id="name-1month" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-1month" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-1month" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('1month', 50000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-1month" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- 3 MONTHS PLAN -->
+                <div class="pricing-card">
+                    <div class="badge green">BEST VALUE</div>
+                    <h3 class="plan-name">3 Months</h3>
+                    <div class="price">110,000 UGX</div>
+                    <div class="installment">Save 27% vs monthly</div>
+                    <ul class="features">
+                        <li>All 1-month features</li>
+                        <li>Priority support</li>
+                        <li>Weekly market analysis</li>
+                        <li>Risk management guide</li>
+                        <li>Exclusive webinar access</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('3months', 110000)">SUBSCRIBE NOW</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-3months" class="payment-form">
+                        <input type="text" id="name-3months" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-3months" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-3months" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('3months', 110000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-3months" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- LIFETIME PLAN -->
+                <div class="pricing-card" style="border-color: var(--purple);">
+                    <div class="badge gold">LIMITED OFFER</div>
+                    <h3 class="plan-name" style="color: var(--purple);">Lifetime</h3>
+                    <div class="price">1,000,000 UGX</div>
+                    <div class="installment">One-time payment</div>
+                    <ul class="features">
+                        <li>Unlimited signal access</li>
+                        <li>24/7 VIP support</li>
+                        <li>Personal trading coach</li>
+                        <li>Advanced strategies</li>
+                        <li>All future updates included</li>
+                    </ul>
+                    <button class="btn purple" onclick="showPaymentForm('lifetime', 1000000)">GET LIFETIME ACCESS</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-lifetime" class="payment-form">
+                        <input type="text" id="name-lifetime" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-lifetime" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-lifetime" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn purple" onclick="initiateMTNPayment('lifetime', 1000000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-lifetime" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MENTORSHIP TAB -->
+        <div id="mentorship" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px;">1-ON-1 MENTORSHIP PROGRAMS</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Transform from beginner to confident trader with our personalized coaching programs tailored to your skill level.</p>
+            
+            <div class="pricing-container">
+                <!-- BEGINNER PLAN -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Beginner Foundation</h3>
+                    <div class="price">750,000 UGX</div>
+                    <div class="installment">or 4 installments of 200,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">3 months</span> comprehensive training</li>
+                        <li>12 <span class="highlight">private 1-on-1 sessions</span></li>
+                        <li>Market fundamentals mastery</li>
+                        <li>Technical analysis from scratch</li>
+                        <li>Psychological training modules</li>
+                        <li>24/7 WhatsApp support</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('beginner', 750000)">ENROLL NOW</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-beginner" class="payment-form">
+                        <input type="text" id="name-beginner" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-beginner" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-beginner" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('beginner', 750000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-beginner" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- INTERMEDIATE PLAN -->
+                <div class="pricing-card">
+                    <div class="badge green">MOST POPULAR</div>
+                    <h3 class="plan-name">Intermediate Accelerator</h3>
+                    <div class="price">450,000 UGX</div>
+                    <div class="installment">or 3 installments of 160,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">1.5 months</span> intensive training</li>
+                        <li>6 <span class="highlight">private 1-on-1 sessions</span></li>
+                        <li>Advanced chart pattern mastery</li>
+                        <li>Risk management framework</li>
+                        <li><span class="highlight">Live trading</span> demonstrations</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('intermediate', 450000)">ENROLL NOW</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-intermediate" class="payment-form">
+                        <input type="text" id="name-intermediate" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-intermediate" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-intermediate" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('intermediate', 450000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-intermediate" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- LIFETIME PLAN -->
+                <div class="pricing-card" style="border-color: var(--purple);">
+                    <div class="badge gold">BEST VALUE</div>
+                    <h3 class="plan-name" style="color: var(--purple);">Lifetime Mastery</h3>
+                    <div class="price">1,200,000 UGX</div>
+                    <div class="installment">or 6 installments of 220,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">Lifetime access</span> to all materials</li>
+                        <li><span class="highlight">Unlimited 1-on-1 sessions</span> (monthly)</li>
+                        <li>All beginner + intermediate content</li>
+                        <li>Advanced algorithmic trading</li>
+                        <li>Portfolio management strategies</li>
+                    </ul>
+                    <button class="btn purple" onclick="showPaymentForm('lifetimementor', 1200000)">ENROLL NOW</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-lifetimementor" class="payment-form">
+                        <input type="text" id="name-lifetimementor" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-lifetimementor" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-lifetimementor" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn purple" onclick="initiateMTNPayment('lifetimementor', 1200000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-lifetimementor" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- COMMUNITY TAB -->
+        <div id="community" class="tab-content">
+            <h2 style="text-align: center; margin-bottom: 30px;">COMMUNITY TRADING PROGRAM</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Join our vibrant trading community for group learning, live sessions, and collaborative growth.</p>
+            
+            <div class="pricing-container">
+                <!-- BEGINNER COMMUNITY -->
+                <div class="pricing-card">
+                    <h3 class="plan-name">Beginner Community</h3>
+                    <div class="price">500,000 UGX</div>
+                    <div class="installment">or 3 installments of 180,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">3 months</span> structured learning</li>
+                        <li>Bi-weekly <span class="highlight">live workshops</span></li>
+                        <li>Beginner-friendly content library</li>
+                        <li>Daily market updates</li>
+                        <li>Private Telegram group access</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('beginnercomm', 500000)">JOIN COMMUNITY</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-beginnercomm" class="payment-form">
+                        <input type="text" id="name-beginnercomm" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-beginnercomm" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-beginnercomm" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('beginnercomm', 500000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-beginnercomm" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- INTERMEDIATE COMMUNITY -->
+                <div class="pricing-card">
+                    <div class="badge">POPULAR</div>
+                    <h3 class="plan-name">Pro Community</h3>
+                    <div class="price">300,000 UGX</div>
+                    <div class="installment">or 2 installments of 160,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">1.5 months</span> group training</li>
+                        <li>Weekly <span class="highlight">live Q&A sessions</span></li>
+                        <li>Advanced strategy discussions</li>
+                        <li>Weekly market analysis reports</li>
+                        <li>Collaborative trade ideas</li>
+                    </ul>
+                    <button class="btn" onclick="showPaymentForm('procomm', 300000)">JOIN COMMUNITY</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-procomm" class="payment-form">
+                        <input type="text" id="name-procomm" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-procomm" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-procomm" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn" onclick="initiateMTNPayment('procomm', 300000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-procomm" class="status-message"></p>
+                    </div>
+                </div>
+                
+                <!-- LIFETIME COMMUNITY -->
+                <div class="pricing-card" style="border-color: var(--purple);">
+                    <h3 class="plan-name" style="color: var(--purple);">Lifetime Community</h3>
+                    <div class="price">800,000 UGX</div>
+                    <div class="installment">or 5 installments of 170,000 UGX</div>
+                    <ul class="features">
+                        <li><span class="highlight">Lifetime access</span> to community</li>
+                        <li>All current and future courses</li>
+                        <li>Monthly <span class="highlight">mastermind sessions</span></li>
+                        <li>Exclusive trading tools</li>
+                        <li>Private Discord server access</li>
+                    </ul>
+                    <button class="btn purple" onclick="showPaymentForm('lifetimecomm', 800000)">JOIN COMMUNITY</button>
+                    
+                    <!-- Payment Form (hidden initially) -->
+                    <div id="payment-form-lifetimecomm" class="payment-form">
+                        <input type="text" id="name-lifetimecomm" class="form-input" placeholder="Full Name" required>
+                        <input type="email" id="email-lifetimecomm" class="form-input" placeholder="Email Address" required>
+                        <input type="tel" id="phone-lifetimecomm" class="form-input" placeholder="Phone Number (e.g., 0755123456)" required>
+                        <button class="btn purple" onclick="initiateMTNPayment('lifetimecomm', 800000)">PAY VIA MTN MOBILE MONEY</button>
+                        <p id="payment-status-lifetimecomm" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS SECTION -->
+        <h2 style="text-align: center; margin-top: 60px;">WHAT OUR MEMBERS SAY</h2>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <p>"The signals service helped me grow my account by 120% in just 2 months. The accuracy is incredible!"</p>
+                <strong>— Robert, Kampala</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>"My mentor transformed my trading completely. I went from losing money to consistent profits in 3 months."</p>
+                <strong>— Sarah, Entebbe</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>"The community support is invaluable. I've learned more here than in years of studying on my own."</p>
+                <strong>— David, Jinja</strong>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Contact: +256 702 523 892 | WhatsApp available 24/7</p>
+            <p>Email: info@forexmasteryug.com</p>
+            <p>© 2023 Forex Mastery Academy Uganda. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- In your existing HTML file, update the script section with this complete implementation -->
+
+<script>
+    // Tab navigation
+    function openTab(tabName) {
+        // Hide all tab contents
+        const tabContents = document.getElementsByClassName('tab-content');
+        for (let i = 0; i < tabContents.length; i++) {
+            tabContents[i].classList.remove('active');
+        }
+        
+        // Remove active class from all tab buttons
+        const tabButtons = document.getElementsByClassName('tab-btn');
+        for (let i = 0; i < tabButtons.length; i++) {
+            tabButtons[i].classList.remove('active');
+        }
+        
+        // Show current tab and mark button as active
+        document.getElementById(tabName).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+    
+    // Show payment form for specific plan
+    function showPaymentForm(planId, amount) {
+        // Hide all payment forms first
+        const allForms = document.querySelectorAll('.payment-form');
+        allForms.forEach(form => {
+            form.style.display = 'none';
+        });
+        
+        // Show the selected payment form
+        const formToShow = document.getElementById('payment-form-' + planId);
+        formToShow.style.display = 'block';
+        
+        // Scroll to the form
+        formToShow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    // Initiate Africa's Talking payment
+    async function initiatePayment(planId, amount) {
+        const name = document.getElementById('name-' + planId).value.trim();
+        const email = document.getElementById('email-' + planId).value.trim();
+        const phone = document.getElementById('phone-' + planId).value.trim();
+        const statusElement = document.getElementById('payment-status-' + planId);
+        const payButton = document.querySelector(`#payment-form-${planId} .btn`);
+        
+        // Validate inputs
+        if (!name || !email || !phone) {
+            statusElement.innerHTML = '<span style="color:var(--red);">Please fill all fields</span>';
+            return;
+        }
+        
+        // Validate Ugandan phone number
+        if (!/^(0|256|\+256)(7|3)\d{8}$/.test(phone)) {
+            statusElement.innerHTML = '<span style="color:var(--red);">Please enter a valid Ugandan phone number</span>';
+            return;
+        }
+        
+        // Format phone number
+        const formattedPhone = formatPhoneNumber(phone);
+        const productName = document.querySelector(`#${planId.replace('payment-form-', '')} .plan-name`).textContent;
+        const reference = `FMA-${planId}-${Date.now().toString().slice(-6)}`;
+        
+        // Show processing status
+        statusElement.innerHTML = 'Processing your payment...';
+        payButton.disabled = true;
+        payButton.innerHTML = '<span class="spinner"></span> Processing...';
+        
+        try {
+            // Call your backend API to initiate payment
+            const response = await fetch('/api/initiate-payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    phoneNumber: formattedPhone,
+                    amount: amount,
+                    currencyCode: 'UGX',
+                    productName: productName,
+                    customerName: name,
+                    customerEmail: email,
+                    metadata: {
+                        planId: planId,
+                        reference: reference
+                    }
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                statusElement.innerHTML = `
+                    <span style="color:var(--green);">✓ Payment request sent!</span><br>
+                    <small>Check your phone to complete payment. Confirmation will be sent to ${email}</small>
+                `;
+                
+                // Poll for payment status (in real implementation, use webhooks)
+                pollPaymentStatus(planId, data.transactionId);
+            } else {
+                statusElement.innerHTML = `<span style="color:var(--red);">Error: ${data.message}</span>`;
+                payButton.disabled = false;
+                payButton.innerHTML = '<i class="fas fa-mobile-alt"></i> Pay with Mobile Money';
+            }
+        } catch (error) {
+            console.error('Payment error:', error);
+            statusElement.innerHTML = `<span style="color:var(--red);">Network error. Please try again.</span>`;
+            payButton.disabled = false;
+            payButton.innerHTML = '<i class="fas fa-mobile-alt"></i> Pay with Mobile Money';
+        }
+    }
+    
+    // Poll for payment status (temporary solution - use webhooks in production)
+    async function pollPaymentStatus(planId, transactionId) {
+        const statusElement = document.getElementById('payment-status-' + planId);
+        const maxAttempts = 10;
+        let attempts = 0;
+        
+        const checkStatus = async () => {
+            attempts++;
+            try {
+                const response = await fetch(`/api/check-payment/${transactionId}`);
+                const data = await response.json();
+                
+                if (data.status === 'Success') {
+                    statusElement.innerHTML = `
+                        <span style="color:var(--green);">✓ Payment confirmed!</span><br>
+                        <small>Transaction ID: ${transactionId}. Access details have been sent to your email.</small>
+                    `;
+                    // Here you would redirect to success page or grant access
+                } else if (attempts < maxAttempts) {
+                    setTimeout(checkStatus, 3000); // Check again after 3 seconds
+                } else {
+                    statusElement.innerHTML += `<br><span style="color:var(--red);">Payment verification timeout. Please contact support.</span>`;
+                }
+            } catch (error) {
+                console.error('Status check error:', error);
+                if (attempts < maxAttempts) {
+                    setTimeout(checkStatus, 3000);
+                }
+            }
+        };
+        
+        setTimeout(checkStatus, 3000);
+    }
+    
+    // Format phone number to standard format
+    function formatPhoneNumber(phone) {
+        // Remove any non-digit characters
+        let cleaned = phone.replace(/\D/g, '');
+        
+        // Convert to local format if it starts with country code
+        if (cleaned.startsWith('256')) {
+            cleaned = '0' + cleaned.slice(3);
+        }
+        
+        // Ensure it's 10 digits starting with 0
+        if (cleaned.length === 9 && !cleaned.startsWith('0')) {
+            cleaned = '0' + cleaned;
+        }
+        
+        return cleaned;
+    }
+</script>
+</body>
+</html>
